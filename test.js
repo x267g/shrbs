@@ -1,423 +1,421 @@
-const quizData = [
-    {
-        question: "В какой области науки наиболее известен Д.И. Щербаков?",
-        options: ["Геология и геохимия", "Физика", "Биология", "Химия"],
-        correct: 0
-    },
-    {
-        question: "В каком году родился Д.И. Щербаков?",
-        options: ["1885", "1893", "1900", "1898"],
-        correct: 1
-    },
-    {
-        question: "В каком году он стал Героем Социалистического Труда?",
-        options: ["1945", "1953", "1961", "1970"],
-        correct: 1
-    },
-    {
-        question: "Какой институт он возглавлял?",
-        options: [
-            "Институт физики Земли",
-            "Институт минералогии, геохимии и кристаллохимии редких элементов",
-            "Институт геологии рудных месторождений",
-            "Институт вулканологии"
-        ],
-        correct: 1
-    },
-    {
-        question: "Какую роль он играл в АН СССР?",
-        options: [
-            "Главный ученый секретарь",
-            "Академик-секретарь Отделения геолого-географических наук",
-            "Вице-президент",
-            "Председатель Президиума"
-        ],
-        correct: 1
-    },
-    {
-        question: "Какие регионы особенно интересовали Щербакова в научном плане?",
-        options: ["Сибирь и Дальний Восток", "Средняя Азия и Казахстан", "Кавказ и Урал", "Европейская часть СССР"],
-        correct: 1
-    },
-    {
-        question: "Какой журнал он основал?",
-        options: ["Геология и геофизика", "Геохимия", "Литология и полезные ископаемые", "Известия АН СССР"],
-        correct: 1
-    },
-    {
-        question: "За какие работы он получил Сталинскую премию?",
-        options: [
-            "За исследования радиоактивных элементов",
-            "За открытие месторождений полезных ископаемых",
-            "За учебник по общей геологии",
-            "За создание геологической карты СССР"
-        ],
-        correct: 1
-    },
-    {
-        question: "В каком году он был избран академиком АН СССР?",
-        options: ["1939", "1946", "1953", "1960"],
-        correct: 2
-    },
-    {
-        question: "Какое образование получил Щербаков?",
-        options: [
-            "Московский университет",
-            "Ленинградский горный институт",
-            "Московская горная академия",
-            "Новороссийский университет"
-        ],
-        correct: 1
-    },
-    {
-        question: "Какой была его специализация в геологии?",
-        options: [
-            "Нефтяная геология",
-            "Геология редких элементов",
-            "Инженерная геология",
-            "Палеонтология"
-        ],
-        correct: 1
-    },
-    {
-        question: "Какой награды он НЕ получал?",
-        options: ["Ленинская премия", "Сталинская премия", "Нобелевская премия", "Орден Ленина"],
-        correct: 2
-    },
-    {
-        question: "В какой организации он был вице-президентом?",
-        options: [
-            "Всесоюзное географическое общество",
-            "Русское географическое общество",
-            "Международный географический союз",
-            "Международная ассоциация по геохимии"
-        ],
-        correct: 0
-    },
-    {
-        question: "Какой вклад он внес в развитие минерально-сырьевой базы СССР?",
-        options: [
-            "Открытие алмазных месторождений",
-            "Выявление месторождений редких элементов",
-            "Разработка нефтяных месторождений Сибири",
-            "Открытие крупных угольных бассейнов"
-        ],
-        correct: 1
-    },
-    {
-        question: "В каком году умер Д.И. Щербаков?",
-        options: ["1966", "1970", "1975", "1980"],
-        correct: 0
+// test.js
+// Тесты о Д.И. Щербакове
+
+class TestSystem {
+    constructor() {
+        this.questions = [];
+        this.currentQuestionIndex = 0;
+        this.userAnswers = [];
+        this.score = 0;
+        this.initialized = false;
+
+        this.initializeElements();
+        this.loadQuestions();
+        this.setupEventListeners();
     }
-];
 
-function generateQuiz() {
-    const container = document.getElementById('tst');
+    initializeElements() {
+        this.questionsContainer = document.getElementById('questions-container');
+        this.resultsContainer = document.getElementById('results-container');
+        this.prevButton = document.getElementById('prev-button');
+        this.nextButton = document.getElementById('next-button');
+        this.currentQuestionElement = document.getElementById('current-question');
+        this.totalQuestionsElement = document.getElementById('total-questions');
+        this.currentScoreElement = document.getElementById('current-score');
+        this.maxScoreElement = document.getElementById('max-score');
+        this.progressFill = document.getElementById('progress-fill');
+    }
 
-    quizData.forEach((quizItem, index) => {
-        // Создаем контейнер для вопроса
-        const questionBlock = document.createElement('div');
-        questionBlock.className = 'question-block';
-        questionBlock.dataset.questionIndex = index;
+    loadQuestions() {
+        this.questions = [
+            {
+                id: 1,
+                text: "В каком году родился Дмитрий Иванович Щербаков?",
+                options: [
+                    { id: 'a', text: "1893", correct: true },
+                    { id: 'b', text: "1900", correct: false },
+                    { id: 'c', text: "1885", correct: false },
+                    { id: 'd', text: "1910", correct: false }
+                ],
+                explanation: "Дмитрий Иванович Щербаков родился 1 (13) февраля 1893 года в Санкт-Петербурге."
+            },
+            {
+                id: 2,
+                text: "Какой университет окончил Д.И. Щербаков?",
+                options: [
+                    { id: 'a', text: "Московский университет", correct: false },
+                    { id: 'b', text: "Петербургский университет", correct: true },
+                    { id: 'c', text: "Киевский университет", correct: false },
+                    { id: 'd', text: "Казанский университет", correct: false }
+                ],
+                explanation: "Д.И. Щербаков окончил Петербургский университет в 1915 году."
+            },
+            {
+                id: 3,
+                text: "Кто был научным руководителем Д.И. Щербакова?",
+                options: [
+                    { id: 'a', text: "А.П. Карпинский", correct: true },
+                    { id: 'b', text: "М.В. Ломоносов", correct: false },
+                    { id: 'c', text: "И.М. Губкин", correct: false },
+                    { id: 'd', text: "В.А. Обручев", correct: false }
+                ],
+                explanation: "Д.И. Щербаков был учеником выдающегося геолога А.П. Карпинского."
+            },
+            {
+                id: 4,
+                text: "Какую высшую награду СССР получил Д.И. Щербаков?",
+                options: [
+                    { id: 'a', text: "Орден Ленина", correct: true },
+                    { id: 'b', text: "Орден Октябрьской Революции", correct: false },
+                    { id: 'c', text: "Орден Дружбы народов", correct: false },
+                    { id: 'd', text: "Орден «Знак Почёта»", correct: false }
+                ],
+                explanation: "Д.И. Щербаков был дважды награждён Орденом Ленина (в 1953 и 1963 годах)."
+            },
+            {
+                id: 5,
+                text: "За что Д.И. Щербаков получил Ленинскую премию?",
+                options: [
+                    { id: 'a', text: "За открытие новых месторождений нефти", correct: false },
+                    { id: 'b', text: "За создание новой геологической карты СССР", correct: false },
+                    { id: 'c', text: "За научные работы по металлогении", correct: true },
+                    { id: 'd', text: "За педагогическую деятельность", correct: false }
+                ],
+                explanation: "Ленинскую премию Д.И. Щербаков получил в 1965 году за научные работы по металлогении и геохимии."
+            },
+            {
+                id: 6,
+                text: "В каком году Д.И. Щербаков стал академиком АН СССР?",
+                options: [
+                    { id: 'a', text: "1943", correct: false },
+                    { id: 'b', text: "1953", correct: true },
+                    { id: 'c', text: "1963", correct: false },
+                    { id: 'd', text: "1973", correct: false }
+                ],
+                explanation: "Д.И. Щербаков был избран академиком АН СССР в 1953 году."
+            },
+            {
+                id: 7,
+                text: "Какой зарубежный университет присвоил Д.И. Щербакову почётную докторскую степень?",
+                options: [
+                    { id: 'a', text: "Йенский университет имени Ф. Шиллера", correct: true },
+                    { id: 'b', text: "Сорбонна", correct: false },
+                    { id: 'c', text: "Оксфордский университет", correct: false },
+                    { id: 'd', text: "Гарвардский университет", correct: false }
+                ],
+                explanation: "Йенский университет имени Ф. Шиллера (ГДР) присвоил Д.И. Щербакову почётную докторскую степень в 1958 году."
+            },
+            {
+                id: 8,
+                text: "Какой минерал назван в честь Д.И. Щербакова?",
+                options: [
+                    { id: 'a', text: "Щербаковит", correct: true },
+                    { id: 'b', text: "Дмитриевит", correct: false },
+                    { id: 'c', text: "Щербаковскит", correct: false },
+                    { id: 'd', text: "Щербит", correct: false }
+                ],
+                explanation: "В честь Д.И. Щербакова был назван минерал щербаковит."
+            },
+            {
+                id: 9,
+                text: "Какую военную награду получил Д.И. Щербаков в 1945 году?",
+                options: [
+                    { id: 'a', text: "Орден Красной Звезды", correct: true },
+                    { id: 'b', text: "Орден Отечественной войны", correct: false },
+                    { id: 'c', text: "Орден Славы", correct: false },
+                    { id: 'd', text: "Медаль «За отвагу»", correct: false }
+                ],
+                explanation: "В 1945 году Д.И. Щербаков был награждён Орденом Красной Звезды."
+            },
+            {
+                id: 10,
+                text: "Какое направление геологии было основным в научной деятельности Д.И. Щербакова?",
+                options: [
+                    { id: 'a', text: "Геология рудных месторождений", correct: true },
+                    { id: 'b', text: "Нефтяная геология", correct: false },
+                    { id: 'c', text: "Инженерная геология", correct: false },
+                    { id: 'd', text: "Палеонтология", correct: false }
+                ],
+                explanation: "Основным направлением научной деятельности Д.И. Щербакова была геология рудных месторождений, геохимия и минералогия."
+            }
+        ];
 
-        // Создаем элемент вопроса
-        const questionElement = document.createElement('h3');
-        questionElement.className = 'question';
-        questionElement.textContent = `${index + 1}. ${quizItem.question}`;
-        questionBlock.appendChild(questionElement);
+        this.totalQuestionsElement.textContent = this.questions.length;
+        this.maxScoreElement.textContent = this.questions.length;
+        this.userAnswers = new Array(this.questions.length).fill(null);
+    }
 
-        // Создаем контейнер для вариантов ответа
-        const optionsContainer = document.createElement('div');
-        optionsContainer.className = 'options-container';
+    setupEventListeners() {
+        this.prevButton.addEventListener('click', () => this.showPreviousQuestion());
+        this.nextButton.addEventListener('click', () => this.showNextQuestion());
 
-        // Создаем элемент для отображения результата
-        const resultElement = document.createElement('div');
-        resultElement.className = 'result';
-        resultElement.style.display = 'none';
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            this.showQuestion(0);
+            this.initialized = true;
+        });
+    }
 
-        // Создаем варианты ответа
-        quizItem.options.forEach((option, optionIndex) => {
-            const optionId = `q${index}_option${optionIndex}`;
+    showQuestion(index) {
+        if (index < 0 || index >= this.questions.length) return;
 
-            const optionWrapper = document.createElement('div');
-            optionWrapper.className = 'option-wrapper';
+        this.currentQuestionIndex = index;
+        const question = this.questions[index];
 
-            const radioInput = document.createElement('input');
-            radioInput.type = 'radio';
-            radioInput.id = optionId;
-            radioInput.name = `question_${index}`;
-            radioInput.value = optionIndex;
+        // Обновляем интерфейс
+        this.currentQuestionElement.textContent = index + 1;
 
-            // Добавляем обработчик события для немедленной проверки
-            radioInput.addEventListener('change', function () {
-                checkAnswerImmediately(index, optionIndex, resultElement);
-            });
+        // Рассчитываем прогресс
+        const progress = ((index + 1) / this.questions.length) * 100;
+        this.progressFill.style.width = `${progress}%`;
 
-            const label = document.createElement('label');
-            label.htmlFor = optionId;
-            label.textContent = option;
+        // Обновляем кнопки навигации
+        this.prevButton.disabled = index === 0;
 
-            optionWrapper.appendChild(radioInput);
-            optionWrapper.appendChild(label);
-            optionsContainer.appendChild(optionWrapper);
+        if (index === this.questions.length - 1) {
+            this.nextButton.textContent = 'Завершить тест →';
+            this.nextButton.classList.add('submit-button');
+            this.nextButton.classList.remove('next-button');
+        } else {
+            this.nextButton.textContent = 'Далее →';
+            this.nextButton.classList.remove('submit-button');
+            this.nextButton.classList.add('next-button');
+        }
+
+        // Отображаем вопрос
+        this.renderQuestion(question);
+    }
+
+    renderQuestion(question) {
+        let html = `
+            <div class="test-question" data-question-id="${question.id}">
+                <div class="question-text">${question.text}</div>
+                <div class="options-container">
+        `;
+
+        question.options.forEach(option => {
+            const isSelected = this.userAnswers[this.currentQuestionIndex] === option.id;
+            const selectedClass = isSelected ? 'selected' : '';
+
+            html += `
+                <label class="option-label ${selectedClass}" for="option-${question.id}-${option.id}">
+                    <input type="radio" 
+                           id="option-${question.id}-${option.id}" 
+                           name="question-${question.id}" 
+                           value="${option.id}" 
+                           class="option-input"
+                           ${isSelected ? 'checked' : ''}>
+                    <span class="option-text">${option.text}</span>
+                </label>
+            `;
         });
 
-        questionBlock.appendChild(optionsContainer);
-        questionBlock.appendChild(resultElement);
+        html += `
+                </div>
+                <div class="explanation" id="explanation-${question.id}">
+                    ${question.explanation}
+                </div>
+            </div>
+        `;
 
-        // Добавляем блок в контейнер
-        container.appendChild(questionBlock);
-    });
+        this.questionsContainer.innerHTML = html;
 
-    // Создаем кнопку проверки результатов (опционально)
-    const checkButton = document.createElement('button');
-    checkButton.id = 'check-results';
-    checkButton.textContent = 'Показать итоговые результаты';
-    checkButton.addEventListener('click', showFinalResults);
+        // Добавляем обработчики для вариантов ответа
+        question.options.forEach(option => {
+            const input = document.getElementById(`option-${question.id}-${option.id}`);
+            input.addEventListener('change', (e) => this.selectAnswer(e.target.value));
+        });
 
-    const resultSummary = document.createElement('div');
-    resultSummary.id = 'result-summary';
-    resultSummary.style.display = 'none';
-
-    container.appendChild(checkButton);
-    container.appendChild(resultSummary);
-}
-
-function checkAnswerImmediately(questionIndex, selectedOptionIndex, resultElement) {
-    const quizItem = quizData[questionIndex];
-    const isCorrect = selectedOptionIndex === quizItem.correct;
-
-    if (isCorrect) {
-        resultElement.textContent = '✓ Правильно!';
-        resultElement.className = 'result correct';
-    } else {
-        resultElement.textContent = `✗ Неверно. Правильный ответ: ${quizItem.options[quizItem.correct]}`;
-        resultElement.className = 'result incorrect';
+        // Показываем/скрываем объяснение в зависимости от состояния ответа
+        this.updateQuestionFeedback();
     }
 
-    resultElement.style.display = 'block';
+    selectAnswer(answerId) {
+        this.userAnswers[this.currentQuestionIndex] = answerId;
 
-    // Обновляем визуальное состояние радио-кнопок
-    updateRadioButtonsStyle(questionIndex, selectedOptionIndex, quizItem.correct);
-}
-
-function updateRadioButtonsStyle(questionIndex, selectedIndex, correctIndex) {
-    const questionBlock = document.querySelector(`[data-question-index="${questionIndex}"]`);
-    const allOptions = questionBlock.querySelectorAll('.option-wrapper');
-
-    // Сначала сбросим все стили
-    allOptions.forEach(wrapper => {
-        wrapper.classList.remove('selected-correct', 'selected-incorrect', 'correct-answer');
-    });
-
-    // Помечаем выбранный вариант
-    if (selectedIndex === correctIndex) {
-        allOptions[selectedIndex].classList.add('selected-correct');
-    } else {
-        allOptions[selectedIndex].classList.add('selected-incorrect');
-        // Показываем правильный ответ
-        allOptions[correctIndex].classList.add('correct-answer');
-    }
-}
-
-function showFinalResults() {
-    let correctAnswers = 0;
-    let answeredQuestions = 0;
-
-    quizData.forEach((quizItem, index) => {
-        const questionBlock = document.querySelector(`[data-question-index="${index}"]`);
-        const selectedOption = questionBlock.querySelector(`input[name="question_${index}"]:checked`);
-
-        if (selectedOption) {
-            answeredQuestions++;
-            const selectedValue = parseInt(selectedOption.value);
-            if (selectedValue === quizItem.correct) {
-                correctAnswers++;
+        // Обновляем отображение выбранного варианта
+        const labels = document.querySelectorAll('.option-label');
+        labels.forEach(label => {
+            const input = label.querySelector('input[type="radio"]');
+            if (input && input.value === answerId) {
+                label.classList.add('selected');
+            } else {
+                label.classList.remove('selected');
             }
-        }
-    });
+        });
 
-    const resultSummary = document.getElementById('result-summary');
-    resultSummary.innerHTML = `
-        <h3>Итоговые результаты:</h3>
-        <p>Правильных ответов: ${correctAnswers} из ${answeredQuestions} (отвечено на ${answeredQuestions} из ${quizData.length} вопросов)</p>
-        <p>Процент правильных ответов: ${answeredQuestions > 0 ? Math.round((correctAnswers / answeredQuestions) * 100) : 0}%</p>
-        <p>Общая полнота ответов: ${Math.round((answeredQuestions / quizData.length) * 100)}%</p>
-    `;
-    resultSummary.style.display = 'block';
+        // Обновляем счётчик правильных ответов
+        this.updateScore();
+    }
+
+    updateScore() {
+        this.score = 0;
+        this.questions.forEach((question, index) => {
+            const userAnswer = this.userAnswers[index];
+            if (userAnswer) {
+                const selectedOption = question.options.find(opt => opt.id === userAnswer);
+                if (selectedOption && selectedOption.correct) {
+                    this.score++;
+                }
+            }
+        });
+
+        this.currentScoreElement.textContent = this.score;
+    }
+
+    updateQuestionFeedback() {
+        const userAnswer = this.userAnswers[this.currentQuestionIndex];
+        const question = this.questions[this.currentQuestionIndex];
+        const explanation = document.getElementById(`explanation-${question.id}`);
+
+        if (userAnswer) {
+            const selectedOption = question.options.find(opt => opt.id === userAnswer);
+            const labels = document.querySelectorAll('.option-label');
+
+            labels.forEach(label => {
+                const input = label.querySelector('input[type="radio"]');
+                if (input) {
+                    const option = question.options.find(opt => opt.id === input.value);
+                    label.classList.remove('correct', 'incorrect');
+
+                    if (option.correct) {
+                        label.classList.add('correct');
+                    } else if (input.value === userAnswer && !option.correct) {
+                        label.classList.add('incorrect');
+                    }
+                }
+            });
+
+            explanation.classList.add('show');
+        } else {
+            explanation.classList.remove('show');
+        }
+    }
+
+    showPreviousQuestion() {
+        if (this.currentQuestionIndex > 0) {
+            this.showQuestion(this.currentQuestionIndex - 1);
+        }
+    }
+
+    showNextQuestion() {
+        if (this.currentQuestionIndex < this.questions.length - 1) {
+            this.showQuestion(this.currentQuestionIndex + 1);
+        } else {
+            this.finishTest();
+        }
+    }
+
+    finishTest() {
+        // Скрываем вопросы и кнопки навигации
+        this.questionsContainer.style.display = 'none';
+        this.prevButton.style.display = 'none';
+        this.nextButton.style.display = 'none';
+
+        // Показываем результаты
+        this.showResults();
+    }
+
+    showResults() {
+        const percentage = (this.score / this.questions.length) * 100;
+
+        let message = '';
+        let emoji = '';
+
+        if (percentage >= 90) {
+            message = 'Отлично! Вы прекрасно знаете биографию Д.И. Щербакова!';
+            emoji = '🏆';
+        } else if (percentage >= 70) {
+            message = 'Хорошо! Вы хорошо знакомы с жизнью и деятельностью учёного.';
+            emoji = '👍';
+        } else if (percentage >= 50) {
+            message = 'Удовлетворительно. Вы знаете основные факты о Д.И. Щербакове.';
+            emoji = '📚';
+        } else {
+            message = 'Попробуйте ещё раз! Изучите материалы на этой странице.';
+            emoji = '🔍';
+        }
+
+        let resultsHtml = `
+            <div class="result-container">
+                <h2 class="result-title">Результаты теста</h2>
+                <div class="result-score">${this.score}/${this.questions.length}</div>
+                <div class="result-message">${message} ${emoji}</div>
+                
+                <div class="result-details">
+                    <h3>Детали результатов:</h3>
+                    <p>Процент правильных ответов: <strong>${percentage.toFixed(1)}%</strong></p>
+                    <p>Правильных ответов: <strong>${this.score}</strong></p>
+                    <p>Неправильных ответов: <strong>${this.questions.length - this.score}</strong></p>
+                </div>
+                
+                <button class="test-button restart-button" id="restart-button">Пройти тест ещё раз</button>
+            </div>
+        `;
+
+        this.resultsContainer.innerHTML = resultsHtml;
+        this.resultsContainer.style.display = 'block';
+
+        // Добавляем обработчик для кнопки перезапуска
+        document.getElementById('restart-button').addEventListener('click', () => this.restartTest());
+    }
+
+    restartTest() {
+        // Сбрасываем тест
+        this.currentQuestionIndex = 0;
+        this.userAnswers = new Array(this.questions.length).fill(null);
+        this.score = 0;
+
+        // Скрываем результаты
+        this.resultsContainer.style.display = 'none';
+        this.resultsContainer.innerHTML = '';
+
+        // Показываем вопросы и кнопки навигации
+        this.questionsContainer.style.display = 'block';
+        this.prevButton.style.display = 'flex';
+        this.nextButton.style.display = 'flex';
+
+        // Обновляем интерфейс
+        this.currentScoreElement.textContent = '0';
+        this.showQuestion(0);
+        this.updateScore();
+    }
+
+    // Метод для инициализации теста при открытии вкладки
+    init() {
+        if (!this.initialized) {
+            this.showQuestion(0);
+            this.initialized = true;
+        }
+    }
 }
 
-// Добавляем CSS стили
-const style = document.createElement('style');
-style.textContent = `
-    .question-block {
-        margin-bottom: 30px;
-        padding: 20px;
-        border: 2px solid rgb(109, 106, 91);
-        border-radius: 8px;
-        background-color: rgba(160, 157, 141, 0.9);
-        transition: all 0.3s ease;
-        scroll-snap-align: start;
-    }
-    
-    .question {
-        margin-top: 0;
-        margin-bottom: 15px;
-        color: #333;
-        font-size: 1.1em;
-    }
-    
-    .options-container {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .option-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 12px;
-        border-radius: 6px;
-        transition: all 0.3s ease;
-        background-color: white;
-        border: 2px solid transparent;
-        cursor: pointer;
-        background:rgba(122, 119, 99, 0.9);
-    }
-    
-    .option-wrapper:hover {
-        background-color: rgba(139, 136, 114, 0.9);
-        border-color: #e0e0e0;
-    }
-    
-    .option-wrapper input[type="radio"] {
-        margin: 0;
-        cursor: pointer;
-    }
-    
-    .option-wrapper label {
-        cursor: pointer;
-        font-size: 1em;
-        flex-grow: 1;
-        user-select: none;
-    }
-    
-    /* Стили для выбранного правильного ответа */
-    .option-wrapper.selected-correct {
-        background-color: #e8f5e8;
-        border-color: #4CAF50;
-        color: #2e7d32;
-    }
-    
-    .option-wrapper.selected-correct label {
-        font-weight: bold;
-        color: #2e7d32;
-    }
-    
-    /* Стили для выбранного неправильного ответа */
-    .option-wrapper.selected-incorrect {
-        background-color: #ffebee;
-        border-color: #f44336;
-        color: #c62828;
-    }
-    
-    .option-wrapper.selected-incorrect label {
-        color: #c62828;
-        text-decoration: line-through;
-    }
-    
-    /* Стили для правильного ответа (когда выбрали неправильно) */
-    .option-wrapper.correct-answer {
-        background-color: #e8f5e8;
-        border-color: #4CAF50;
-        color: #2e7d32;
-        animation: pulse 1.5s infinite;
-    }
-    
-    .option-wrapper.correct-answer label {
-        font-weight: bold;
-        color: #2e7d32;
-    }
-    
-    @keyframes pulse {
-        0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
-        70% { box-shadow: 0 0 0 6px rgba(76, 175, 80, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
-    }
-    
-    .result {
-        margin-top: 15px;
-        font-weight: bold;
-        padding: 12px;
-        border-radius: 6px;
-        display: none;
-        animation: fadeIn 0.5s ease;
-    }
-    
-    .result.correct {
-        background-color: #e8f5e8;
-        color: #2e7d32;
-        border-left: 4px solid #4CAF50;
-    }
-    
-    .result.incorrect {
-        background-color: #ffebee;
-        color: #c62828;
-        border-left: 4px solid #f44336;
-    }
-    
-    #check-results {
-        padding: 12px 24px;
-        color: #281c14;
-        background-color: rgb(202, 180, 132);
-        border: none;
-        border-radius: 4px;
-        font-size: 25px;
-        cursor: pointer;
-        margin-top: 20px;
-        font-family: "Oswald", sans-serif;
-        
-        transition: background-color 0.3s;
-    }
-    
-    #check-results:hover {
-        background-color: rgb(192, 170, 122);
-    }
-    
-    #result-summary {
-        margin-top: 20px;
-        padding: 20px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        background-color: #f8f9fa;
-        animation: fadeIn 0.5s ease;
-        scroll-snap-align: start;
-        margin-bottom: 300px;
-    }
-    
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* Стиль для отключенных радио-кнопок после ответа */
-    .question-block.answered input[type="radio"] {
-        opacity: 0.7;
-        cursor: not-allowed;
-    }
-    
-    .question-block.answered .option-wrapper {
-        cursor: default;
-    }
-    
-    .question-block.answered .option-wrapper:hover {
-        background-color: inherit;
-        border-color: inherit;
-    }
-`;
+// Создаём экземпляр тестовой системы
+let testSystem = null;
 
-document.head.appendChild(style);
+// Инициализация теста при открытии соответствующей вкладки
+document.addEventListener('DOMContentLoaded', function () {
+    // Создаём систему тестов
+    testSystem = new TestSystem();
 
-// Инициализируем генератор вопросов
-document.addEventListener('DOMContentLoaded', generateQuiz);
+    // Добавляем обработчик для кнопок навигации между вкладками
+    const navButtons = document.querySelectorAll('.nav-button');
+    navButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const tabId = this.getAttribute('data-tab');
+            if (tabId === 'tests' && testSystem) {
+                // Даём небольшой таймаут для отображения контента перед инициализацией теста
+                setTimeout(() => {
+                    testSystem.init();
+                }, 100);
+            }
+        });
+    });
+
+    // Инициализируем тест, если сразу открыта вкладка "Тесты"
+    if (document.querySelector('#tests').classList.contains('active')) {
+        setTimeout(() => {
+            testSystem.init();
+        }, 100);
+    }
+});

@@ -4,132 +4,1211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <title>Щербаков Д.И. - Классная география</title>
+    <title>Щербаков Дмитрий Иванович - Геолог и учёный</title>
+    <meta name="description"
+        content="Страница, посвящённая Дмитрию Ивановичу Щербакову - выдающемуся советскому геологу и академику">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto+Slab:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Reset и базовые стили */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --color-primary: #281c14;
+            --color-secondary: #a38b5f;
+            --color-accent: #7c7a5c;
+            --color-light: #f5f3e9;
+            --color-bg: rgba(207, 207, 168, 0.6);
+            --color-card: rgba(148, 144, 124, 0.6);
+            --border-radius: 20px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Roboto Slab', serif;
+            color: var(--color-primary);
+            background-color: var(--color-light);
+        }
+
+        /* Фоновое изображение */
+        .background {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+        }
+
+        .background-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(3px) brightness(0.9);
+        }
+
+        /* Основной контейнер */
+        .main-container {
+            display: flex;
+            height: 85vh;
+            width: 100vw;
+            position: relative;
+        }
+
+        /* Блок с фотографией */
+        .photo-section {
+            position: relative;
+            width: 35%;
+            min-width: 400px;
+            height: 100%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .photo-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scientist-photo {
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            box-shadow: -10px 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Контентная часть */
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            width: 65%;
+            height: 100%;
+            margin-right: 20px;
+        }
+
+        /* Заголовок */
+        .header-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .scientist-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            width: fit-content;
+            color: var(--color-primary);
+            margin-bottom: -3px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 40px;
+            border-radius: var(--border-radius);
+            background-color: rgba(172, 152, 113);
+        }
+
+        .scientist-years {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 500;
+            color: var(--color-primar);
+            background-color: rgba(172, 152, 113);
+            display: inline-block;
+            padding: 5px 25px;
+            border-radius: var(--border-radius);
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        /* Навигация */
+        .navigation {
+            display: flex;
+            height: 80px;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 4px solid rgba(41, 37, 30, 0.4);
+            margin-bottom: 15px;
+            background-color: rgba(202, 180, 132, 0.8);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            padding: 0 15px;
+        }
+
+        .nav-button {
+            display: flex;
+            height: 70%;
+            background-color: rgb(202, 180, 132);
+            margin: 0 10px;
+            border: 3px solid rgb(134, 114, 70);
+            border-radius: 15px;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            cursor: pointer;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            transition: var(--transition);
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .nav-button:hover,
+        .nav-button.active {
+            background-color: rgb(172, 152, 113);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Основной контент */
+        .content-container {
+            flex: 1;
+            background: var(--color-card);
+            border: 6px solid rgba(41, 37, 30, 0.4);
+            border-radius: var(--border-radius);
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            padding: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tab-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            display: none;
+            scroll-snap-type: y mandatory;
+            overscroll-behavior: contain;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Стили для табов */
+        .biography-tab {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .biography-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 25px;
+            border: 2px solid var(--color-primary);
+            border-radius: 15px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+
+        .materials-tab {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            padding: 20px;
+        }
+
+        #materials {
+            scroll-snap-type: y mandatory;
+        }
+
+        .video-container {
+            width: 95%;
+            height: 600px;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 100px;
+        }
+
+        .video-frame {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            border: none;
+        }
+
+        .memory-tab,
+        .tests-tab {
+            padding: 30px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--color-primary);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .memory-tab {
+            padding: 50px;
+        }
+
+        #memory>div>p {
+            margin: 20px 0;
+        }
+
+        /* Стилизация скроллбара */
+        .tab-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .tab-content::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        .tab-content::-webkit-scrollbar-thumb {
+            background: rgba(41, 37, 30, 0.5);
+            border-radius: 5px;
+        }
+
+        .tab-content::-webkit-scrollbar-thumb:hover {
+            background: rgba(41, 37, 30, 0.7);
+        }
+
+        /* Футер с наградами */
+        .awards-footer {
+            background-color: var(--color-accent);
+            height: 15vh;
+            min-height: 120px;
+            width: 100vw;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-shrink: 0;
+            padding: 0 20px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: var(--color-secondary) transparent;
+        }
+
+        .awards-footer::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .awards-footer::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .awards-footer::-webkit-scrollbar-thumb {
+            background: var(--color-secondary);
+            border-radius: 4px;
+        }
+
+        .award-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 180px;
+            height: 90%;
+            margin: 0 15px;
+            padding: 10px;
+            background: #c0bea4;
+            border-radius: 12px;
+            border: 3px solid #7c7a5c;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .award-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .award-year {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 5px;
+        }
+
+        .award-name {
+            font-family: 'Roboto Slab', serif;
+            font-size: 0.9rem;
+            text-align: center;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+            line-height: 1.3;
+            flex: 1;
+        }
+
+        .award-image {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            margin-top: 5px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .main-container {
+                flex-direction: column;
+                height: auto;
+                min-height: 85vh;
+                overflow-y: auto;
+            }
+
+            .content-section {
+                width: 100%;
+                margin-right: 0;
+                order: 2;
+            }
+
+            .photo-section {
+                width: 100%;
+                min-width: auto;
+                height: 300px;
+                order: 1;
+                margin-bottom: 20px;
+            }
+
+            .photo-container {
+                position: relative;
+            }
+
+            .scientist-photo {
+                width: 100%;
+                height: 300px;
+                border-radius: var(--border-radius);
+            }
+
+            .navigation {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 15px;
+            }
+
+            .nav-button {
+                margin: 5px;
+                height: 50px;
+                font-size: 1rem;
+            }
+
+            .scientist-name {
+                font-size: 2.2rem;
+            }
+
+            .scientist-years {
+                font-size: 1.8rem;
+            }
+
+            .awards-footer {
+                height: auto;
+                flex-wrap: wrap;
+                padding: 15px;
+                min-height: 150px;
+            }
+
+            .award-card {
+                margin: 10px;
+                height: 140px;
+                min-width: 160px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .scientist-name {
+                font-size: 1.8rem;
+            }
+
+            .scientist-years {
+                font-size: 1.5rem;
+            }
+
+            .biography-tab {
+                grid-template-columns: 1fr;
+            }
+
+            .video-container {
+                height: 300px;
+            }
+
+            .navigation {
+                justify-content: center;
+            }
+
+            .nav-button {
+                flex: 0 0 calc(50% - 20px);
+                font-size: 0.9rem;
+            }
+        }
+
+        .test-container {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--color-secondary);
+            padding-bottom: 15px;
+        }
+
+        .test-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+
+        .test-description {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .test-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: rgba(202, 180, 132, 0.2);
+            border-radius: 10px;
+            border: 2px solid var(--color-secondary);
+        }
+
+        .progress-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            color: var(--color-primary);
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 6px;
+            margin: 0 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--color-secondary), var(--color-accent));
+            border-radius: 6px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .test-question {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--color-secondary);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .question-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: rgba(202, 180, 132, 0.1);
+            border: 2px solid rgba(134, 114, 70, 0.3);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1.1rem;
+        }
+
+        .option-label:hover {
+            background-color: rgba(202, 180, 132, 0.3);
+            transform: translateX(5px);
+        }
+
+        .option-label.selected {
+            background-color: rgba(172, 152, 113, 0.4);
+            border-color: var(--color-secondary);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .option-label.correct {
+            background-color: rgba(76, 175, 80, 0.2);
+            border-color: #4CAF50;
+        }
+
+        .option-label.incorrect {
+            background-color: rgba(244, 67, 54, 0.2);
+            border-color: #F44336;
+        }
+
+        .option-input {
+            margin-right: 15px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .test-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(202, 180, 132, 0.5);
+        }
+
+        .test-button {
+            padding: 14px 30px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 160px;
+            text-align: center;
+        }
+
+        .test-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .prev-button {
+            background-color: rgba(148, 144, 124, 0.8);
+            color: var(--color-primary);
+        }
+
+        .prev-button:hover:not(:disabled) {
+            background-color: rgba(148, 144, 124, 1);
+            transform: translateY(-3px);
+        }
+
+        .next-button {
+            background-color: var(--color-secondary);
+            color: white;
+        }
+
+        .next-button:hover:not(:disabled) {
+            background-color: #8c754f;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-button {
+            background-color: var(--color-accent);
+            color: white;
+            width: 100%;
+        }
+
+        .submit-button:hover:not(:disabled) {
+            background-color: #6c6a4c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-container {
+            text-align: center;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            border: 3px solid var(--color-secondary);
+        }
+
+        .result-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+        }
+
+        .result-score {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--color-secondary);
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-message {
+            font-size: 1.3rem;
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .result-details {
+            background-color: rgba(202, 180, 132, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .result-details h3 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+
+        .restart-button {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            margin-top: 30px;
+        }
+
+        .restart-button:hover {
+            background-color: #1a130d;
+            transform: translateY(-3px);
+        }
+
+        .feedback-correct {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        .feedback-incorrect {
+            color: #F44336;
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        .explanation {
+            background-color: rgba(202, 180, 132, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--color-secondary);
+            font-size: 1rem;
+            color: #555;
+            display: none;
+        }
+
+        .explanation.show {
+            display: block;
+        }
+
+        .interviews-tab {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .interview-block {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--color-secondary);
+        }
+
+        .person-info {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(202, 180, 132, 0.5);
+        }
+
+        .person-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+
+        .person-position {
+            font-size: 1.2rem;
+            color: #555;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .videos-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .video-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .video-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            color: var(--color-primary);
+            text-align: center;
+            padding: 10px;
+            background-color: rgba(202, 180, 132, 0.2);
+            border-radius: 8px;
+            border: 1px solid var(--color-secondary);
+        }
+
+        .video-9-16 {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            aspect-ratio: 9/16;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 3px solid var(--color-accent);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(202, 180, 132, 0.2), rgba(148, 144, 124, 0.2));
+            color: var(--color-primary);
+            font-family: 'Roboto Slab', serif;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .video-placeholder span {
+            max-width: 200px;
+        }
+
+        .interview-note {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: rgba(202, 180, 132, 0.1);
+            border-radius: 10px;
+            font-style: italic;
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Адаптивность для интервью */
+        @media (max-width: 768px) {
+            .videos-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .person-name {
+                font-size: 1.5rem;
+            }
+
+            .person-position {
+                font-size: 1.1rem;
+            }
+
+            .video-label {
+                font-size: 1.2rem;
+            }
+
+            .interview-block {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .interviews-tab {
+                padding: 10px;
+                gap: 30px;
+            }
+
+            .video-9-16 {
+                max-width: 250px;
+            }
+        }
+
+        #logo1 {
+            position: absolute;
+            z-index: 99999;
+            top: 20px;
+            right: 20px;
+            height: 90px;
+
+            border-radius: 20px;
+        }
+
+        #logo2 {
+            position: absolute;
+            z-index: 99999;
+            top: 20px;
+            right: 150px;
+            height: 90px;
+
+            border-radius: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="bg"><img src="assets/background.jpg" alt="Фоновое изображение"></div>
 
-    <div id="flb">
-        <div id="side">
-            <div id="mt">
-                <div id="name">
-                    <h1>Щербаков Дмитрий Иванович</h1>
-                </div>
-                <div id="date">
-                    <h2>2028-1720</h2>
-                </div>
-
-            </div>
-            <div id="content">
-                <div id="hd" aria-label="Основная навигация">
-                    <div class="opt" tag="bio">Биография</div>
-                    <div class="opt" tag="mem">Память</div>
-                    <div class="opt" tag="vid">Материалы</div>
-                    <div class="opt" tag="tst">Тесты</div>
-                </div>
-                <main id="bd">
-                    <div id="bio" class="sec">
-                        <section class="cnt">texttexttext001</section>
-                        <section class="cnt">texttexttext002</section>
-                        <section class="cnt">texttexttext003</section>
-                        <section class="cnt">texttexttext001</section>
-                        <section class="cnt">texttexttext002</section>
-                        <section class="cnt">texttexttext003</section>
-                        <section class="cnt">texttexttext001</section>
-                        <section class="cnt">texttexttext002</section>
-                        <section class="cnt">texttexttext003</section>
-                        <section class="cnt">texttexttext001</section>
-                        <section class="cnt">texttexttext002</section>
-                        <section class="cnt">texttexttext003</section>
-                    </div>
-                    <section id="tst" class="sec activate">
-
-                    </section>
-                    <section id="mem" class="sec">
-                        <section class="cnt">texttexttext007</section>
-                        <section class="cnt">texttexttext008</section>
-                        <section class="cnt">texttexttext009</section>
-                        <section class="cnt">texttexttext010</section>
-                    </section>
-                    <section id="vid" class="sec">
-                        <div><iframe src="https://drive.google.com/file/d/1bax8N69OykwmcfrksN1cDH0rJpeYiEvb/preview"
-                                width="100%" style="border: none;">
-                            </iframe></div>
-                        <div><iframe src="https://drive.google.com/file/d/1bax8N69OykwmcfrksN1cDH0rJpeYiEvb/preview"
-                                width="100%" style="border: none;">
-                            </iframe></div>
-
-                    </section>
-                </main>
-            </div>
-        </div>
-
-        <div id="img-container">
-            <img src="assets/щербаков.png" id="sherbimg" alt="Щербаков Д.И.">
-        </div>
+    <img id="logo1" src="assets/180y.png" alt="">
+    <img id="logo2" src="assets/cg.png" alt="">
+    <!-- Фоновое изображение -->
+    <div class="background" aria-hidden="true">
+        <img src="assets/background.jpg" alt="" class="background-image">
     </div>
 
-    <footer id="fin">
-        <div class="finfo">
-            <div>
-                <p class="year">1945</p>
-                <p class="medal">Орден Красной Звезды</p>
+    <!-- Основной контент -->
+    <div class="main-container">
+        <!-- Блок с фотографией -->
+        <section class="photo-section">
+            <div class="photo-container">
+                <img src="assets/щербаков.png" alt="Портрет Дмитрия Ивановича Щербакова" class="scientist-photo">
             </div>
+        </section>
 
-            <img src="assets/Order_of_the_Red_Star.png" alt="" class="memg">
-        </div>
-        <div class="finfo">
-            <div>
-                <p class="year">1945</p>
-                <p class="medal">«За оборону Кавказа»</p>
-            </div>
+        <!-- Контентная часть -->
+        <section class="content-section">
+            <!-- Заголовок -->
+            <header class="header-section">
+                <h1 class="scientist-name">Щербаков Дмитрий Иванович</h1>
+                <div class="scientist-years">1893-1966</div>
+            </header>
 
-            <img src="assets/SU_Medal_For_the_Defence_of_the_Caucasus_ribbon.svg" alt="" class="memg"
-                style="margin: 15px;">
+            <!-- Навигация -->
+            <nav class="navigation" aria-label="Основные разделы">
+                <button class="nav-button active" data-tab="biography">Биография</button>
+                <button class="nav-button" data-tab="memory">Память</button>
+                <button class="nav-button" data-tab="materials">Медиа</button>
+                <button class="nav-button" data-tab="tests">Тесты</button>
+                <button class="nav-button" data-tab="questions" style="line-height: 110%;">Интересные вопросы</button>
+            </nav>
+
+            <!-- Контент табов -->
+            <main class="content-container">
+                <!-- Биография -->
+                <section id="biography" class="tab-content active" role="tabpanel" aria-labelledby="tab-biography">
+                    <div class="biography-tab">
+                        <div class="biography-card">
+                            <h3>Ранние годы</h3>
+                            <p>Дмитрий Иванович Щербаков родился 1 (13) февраля 1893 года в городе Санкт-Петербурге в
+                                семье служащего.</p>
+                        </div>
+                        <div class="biography-card">
+                            <h3>Образование</h3>
+                            <p>Окончил Петербургский университет в 1915 году. Ученик выдающихся геологов А.П.
+                                Карпинского и В.И. Вернадского.</p>
+                        </div>
+                        <div class="biography-card">
+                            <h3>Научная деятельность</h3>
+                            <p>Специалист в области геологии рудных месторождений, геохимии и минералогии. Автор более
+                                200 научных работ.</p>
+                        </div>
+                        <div class="biography-card">
+                            <h3>Педагогическая работа</h3>
+                            <p>Профессор Московского геологоразведочного института, воспитал несколько поколений
+                                советских геологов.</p>
+                        </div>
+                        <div class="biography-card">
+                            <h3>Экспедиции</h3>
+                            <p>Участвовал в многочисленных геологических экспедициях по территории СССР, изучал
+                                месторождения полезных ископаемых.</p>
+                        </div>
+                        <div class="biography-card">
+                            <h3>Административная работа</h3>
+                            <p>Директор Института геологических наук АН СССР, заместитель академика-секретаря Отделения
+                                геолого-географических наук АН СССР.</p>
+                        </div>
+                        <div class="biography-card">
+                            <h3>Международное признание</h3>
+                            <p>Почётный доктор Йенского университета имени Ф. Шиллера (ГДР, 1958), член нескольких
+                                зарубежных академий наук.</p>
+                        </div>
+                        <div class="biography-card">
+                            <h3>Научные достижения</h3>
+                            <p>Внёс значительный вклад в теорию рудообразования, металлогению и региональную геологию.
+                                Разработал классификацию эндогенных месторождений.</p>
+                        </div>
+                        <div class="biography-card">
+                            <h3>Военные годы</h3>
+                            <p>В годы Великой Отечественной войны работал над вопросами стратегического сырья для
+                                оборонной промышленности.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Память -->
+                <section id="memory" class="tab-content" role="tabpanel" aria-labelledby="tab-memory" hidden>
+                    <div class="memory-tab biography-card">
+                        <h2>Память о Д.И. Щербакове</h2>
+                        <p>Имя Дмитрия Ивановича Щербакова увековечено в названиях географических объектов, научных
+                            учреждений и наград:</p>
+                        <ul>
+                            <li>Именем Щербакова назван минерал "щербаковит"</li>
+                            <li>В его честь названы улицы в нескольких городах России</li>
+                            <li>Премия имени Д.И. Щербакова за лучшие работы в области геологии</li>
+                            <li>Мемориальные доски в Москве и Санкт-Петербурге</li>
+                            <li>Имя учёного носит одна из аудиторий Московского геологоразведочного института</li>
+                        </ul>
+                        <p>Архив Д.И. Щербакова хранится в Архиве Российской академии наук и содержит более 1000 единиц
+                            хранения.</p>
+                    </div>
+                </section>
+
+                <!-- Материалы -->
+                <section id="materials" class="tab-content" role="tabpanel" aria-labelledby="tab-materials" hidden>
+                    <div class="video-container">
+                        <iframe src="https://drive.google.com/file/d/1ARNRSh1CFcnKhTRl_1vXIr_PnbrMwlGg/preview"
+                            class="video-frame"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://drive.google.com/file/d/1_DoID0v9qm7Aa9XR13-MCkAaysTtkNPH/preview"
+                            class="video-frame"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://drive.google.com/file/d/1bax8N69OykwmcfrksN1cDH0rJpeYiEvb/preview"
+                            class="video-frame"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </section>
+
+                <!-- Тесты -->
+                <section id="tests" class="tab-content" role="tabpanel" aria-labelledby="tab-tests" hidden>
+                    <div class="test-container">
+                        <div class="test-header">
+                            <h2 class="test-title">Тест: Дмитрий Иванович Щербаков</h2>
+                        </div>
+
+                        <div class="test-progress">
+                            <div class="progress-text">Вопрос <span id="current-question">1</span> из <span
+                                    id="total-questions">10</span></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-fill"></div>
+                            </div>
+                            <div class="progress-text">Баллы: <span id="current-score">0</span>/<span
+                                    id="max-score">10</span></div>
+                        </div>
+
+                        <div id="questions-container">
+                            <!-- Вопросы будут загружены через JavaScript -->
+                        </div>
+
+                        <div class="test-controls">
+                            <button class="test-button prev-button" id="prev-button" disabled>← Назад</button>
+                            <button class="test-button next-button" id="next-button">Далее →</button>
+                        </div>
+
+                        <div id="results-container" style="display: none;">
+                            <!-- Результаты будут отображены здесь -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Вопросы-->
+                <section id="questions" class="tab-content" role="tabpanel" aria-labelledby="tab-tests" hidden>
+                    <div class="interviews-tab">
+
+                        <!-- Первый блок -->
+                        <div class="interview-block">
+                            <div class="person-info">
+                                <h3 class="person-name">Н.Д. Алексашин</h3>
+                                <p class="person-position">Участник четырёх советских антарктических экспедиций</p>
+                            </div>
+
+                            <div class="videos-container">
+                                <div class="video-wrapper">
+                                    <div class="video-label">Вопрос</div>
+                                    <div class="video-9-16">
+                                        <div class="video-placeholder">
+                                            <iframe
+                                                src="https://drive.google.com/file/d/1BUmeLSVNBAKvcYjBAFHNIBfvPiu-HD45/preview"
+                                                frameborder="0" style="height: 100%;"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="video-wrapper">
+                                    <div class="video-label">Ответ</div>
+                                    <div class="video-9-16">
+                                        <div class="video-placeholder">
+                                            <iframe
+                                                src="https://drive.google.com/file/d/1PX6Srn8KNUB_rp4K1WRpiJQatAZTdHbF/preview"
+                                                frameborder="0" style="height: 100%;"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Второй блок -->
+                        <div class="interview-block">
+                            <div class="person-info">
+                                <h3 class="person-name">Рафаэль Харисович Сунгатуллин</h3>
+                                <p class="person-position">Профессор Казанского Приволжского Федерального Университета
+                                </p>
+                            </div>
+
+                            <div class="videos-container">
+                                <div class="video-wrapper">
+                                    <div class="video-label">Вопрос</div>
+                                    <div class="video-9-16">
+                                        <div class="video-placeholder">
+                                            <iframe
+                                                src="https://drive.google.com/file/d/11SECzkCQsSN_4Ye0-F5bYlHwKF9UokLB/preview"
+                                                style="height: 100%;" frameborder="0"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="video-wrapper">
+                                    <div class="video-label">Ответ</div>
+                                    <div class="video-9-16">
+                                        <div class="video-placeholder">
+                                            <iframe
+                                                src="https://drive.google.com/file/d/1WmLFh5tzTpNWYRHctj4xzavigjxrsTZm/preview"
+                                                style="height: 100%;" frameborder="0"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Третий блок -->
+                        <div class="interview-block">
+                            <div class="person-info">
+                                <h3 class="person-name">Геолог-минералог Радкевич Г.А.</h3>
+                                <p class="person-position">Специалист в области минералогии</p>
+                            </div>
+
+                            <div class="videos-container">
+                                <div class="video-wrapper">
+                                    <div class="video-label">Вопрос</div>
+                                    <div class="video-9-16">
+                                        <div class="video-placeholder">
+                                            <iframe src="" style="height: 100%;" frameborder="0"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="video-wrapper">
+                                    <div class="video-label">Ответ</div>
+                                    <div class="video-9-16">
+                                        <iframe src="" style="height: 100%;" frameborder="0"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </section>
+    </div>
+
+    <!-- Футер с наградами -->
+    <footer class="awards-footer">
+        <div class="award-card">
+            <div class="award-year">1945</div>
+            <div class="award-name">Орден Красной Звезды</div>
+            <img src="assets/Order_of_the_Red_Star.png" alt="Орден Красной Звезды" class="award-image">
         </div>
-        <div class="finfo">
-            <p class="year">1945</p>
-            <p style="font-size: 12px" class="medal">«За доблестный труд в <br>Великой
-                Отечественной войне»</p>
-            <img src="assets/SU_Medal_For_Valiant_Labour_in_the_Great_Patriotic_War_1941-1945_ribbon.svg" alt=""
-                class="memg" style="margin: 15px; margin-top: 8px;">
+        <div class="award-card">
+            <div class="award-year">1945</div>
+            <div class="award-name">Медаль «За оборону Кавказа»</div>
+            <img src="assets/SU_Medal_For_the_Defence_of_the_Caucasus_ribbon.svg" alt="Медаль «За оборону Кавказа»"
+                class="award-image">
         </div>
-        <div class="finfo">
-            <p class="year">1953, 1963</p>
-            <p class="medal">Орден Ленина</p>
-            <img src="assets/250px-Order_of_Lenin_badge_with_ribbon.webp" alt="" class="memg">
+        <div class="award-card">
+            <div class="award-year">1945</div>
+            <div class="award-name">Медаль «За доблестный труд в Великой Отечественной войне»</div>
+            <img src="assets/SU_Medal_For_Valiant_Labour_in_the_Great_Patriotic_War_1941-1945_ribbon.svg"
+                alt="Медаль «За доблестный труд в Великой Отечественной войне»" class="award-image">
         </div>
-        <div class="finfo">
-            <p class="year">1954, 1954</p>
-            <p style="font-size: 14px" class="medal">Орден Трудового Красного Знамени</p>
-            <img src="assets/SU_Order_of_the_Red_Banner_of_Labour_ribbon.svg" alt="" class="memg" style="margin: 15px;">
+        <div class="award-card">
+            <div class="award-year">1953, 1963</div>
+            <div class="award-name">Орден Ленина</div>
+            <img src="assets/250px-Order_of_Lenin_badge_with_ribbon.webp" alt="Орден Ленина" class="award-image">
         </div>
-        <div class="finfo">
-            <p class="year">1958</p>
-            <p style="font-size: 14px" class="medal">Почётный доктор наук Йенского <br>Университета имени Ф. Шиллера</p>
-            <img src="assets/Logo_UniJena.svg.png" alt="" class="memg" style="margin: 10px;">
+        <div class="award-card">
+            <div class="award-year">1954, 1954</div>
+            <div class="award-name">Орден Трудового Красного Знамени</div>
+            <img src="assets/SU_Order_of_the_Red_Banner_of_Labour_ribbon.svg" alt="Орден Трудового Красного Знамени"
+                class="award-image">
         </div>
-        <div class="finfo">
-            <p class="year">1963</p>
-            <p style="font-size: 12px" class="medal">Золотая медаль имени А. П. Карпинского</p>
-            <img src="assets/500px-Medal_RAS_A._P._Karpinskyi_avers.jpg" alt="" class="memg" style="margin: 15px;">
+        <div class="award-card">
+            <div class="award-year">1958</div>
+            <div class="award-name">Почётный доктор наук Йенского Университета имени Ф. Шиллера</div>
+            <img src="assets/Logo_UniJena.svg.png" alt="Логотип Йенского университета" class="award-image">
         </div>
-        <div class="finfo">
-            <p class="year">1963</p>
-            <p style="font-size: 14px" class="medal">Заслуженный деятель науки <br> и техники Киргизской ССР</p>
-            <img src="assets/krgssr.png" alt="" class="memg" style="margin: 15px;">
+        <div class="award-card">
+            <div class="award-year">1963</div>
+            <div class="award-name">Золотая медаль имени А. П. Карпинского</div>
+            <img src="assets/500px-Medal_RAS_A._P._Karpinskyi_avers.jpg" alt="Золотая медаль имени А. П. Карпинского"
+                class="award-image">
         </div>
-        <div class="finfo">
-            <p class="year">1965</p>
-            <p class="medal">Ленинская премия</p>
-            <img src="assets/Medal_Lenin_Prize.png" alt="" class="memg" style="margin: 15px;">
+        <div class="award-card">
+            <div class="award-year">1963</div>
+            <div class="award-name">Заслуженный деятель науки и техники Киргизской ССР</div>
+            <img src="assets/krgssr.png" alt="Знак Заслуженного деятеля науки Киргизской ССР" class="award-image">
+        </div>
+        <div class="award-card">
+            <div class="award-year">1965</div>
+            <div class="award-name">Ленинская премия</div>
+            <img src="assets/Medal_Lenin_Prize.png" alt="Медаль Ленинской премии" class="award-image">
         </div>
     </footer>
+
 
 </body>
 <script src="test.js"></script>
