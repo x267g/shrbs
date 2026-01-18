@@ -243,12 +243,12 @@
             display: flex;
             flex-direction: column;
             width: 95%;
-            height: 600px;
             background-color: rgba(0, 0, 0, 0.1);
             border-radius: 20px;
             padding: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             margin-bottom: 100px;
+            aspect-ratio: 16/10;
         }
 
         .video-container iframe {
@@ -360,11 +360,6 @@
             flex-shrink: 0;
         }
 
-        .award-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
         .award-year {
             font-family: 'Oswald', sans-serif;
             font-size: 1.2rem;
@@ -443,12 +438,6 @@
                 font-size: 1.8rem;
             }
 
-            .awards-footer {
-                height: auto;
-                flex-wrap: wrap;
-                padding: 15px;
-                min-height: 150px;
-            }
 
             .award-card {
                 margin: 10px;
@@ -894,7 +883,8 @@
             }
         }
 
-        #logo1 {
+        #logo1,
+        #logo2 {
             position: absolute;
             z-index: 99999;
             top: 3vh;
@@ -905,21 +895,98 @@
         }
 
         #logo2 {
-            position: absolute;
-            z-index: 99999;
-            top: 3vh;
             right: 13vh;
-            height: 7vh;
+        }
 
-            border-radius: 2vh;
+        @media (min-width: 1024px) {
+            #mobile-header {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1023px) {
+
+            #logo1,
+            #logo2 {
+                top: auto;
+                right: auto;
+                height: 4vh;
+                align-self: center;
+
+            }
+
+            #logo1 {
+                transform: translateX(3vh);
+            }
+
+            #logo2 {
+                transform: translateX(-3vh);
+            }
+
+
+            .photo-section {
+                width: 90%;
+                height: 600px;
+                align-self: center;
+            }
+
+            .scientist-photo {
+                height: 100%;
+                width: auto;
+                border: white 5px solid;
+                border-color: var(--color-accent);
+                overflow: hidden;
+                background-color: #4b4947;
+            }
+
+            #mobile-header {
+                display: block;
+            }
+
+            #desctop-header {
+                display: none;
+            }
+
+            .header-section {
+                margin-top: 20px;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+
+            .main-container {
+                padding-top: 20px;
+            }
+
+            .tab-content {
+                padding: 0;
+                height: 800px;
+            }
+
+            .content-container {
+                padding: 3px;
+                height: 700px;
+                margin-bottom: 20px;
+            }
+
+            .video-container .h {
+                font-size: 1.4rem;
+            }
+
+            .video-container {
+                width: 99%;
+            }
+
+            .navigation {
+                scroll-snap-type: start;
+                padding: 3px;
+            }
+
         }
     </style>
 </head>
 
 <body>
 
-    <img id="logo1" src="assets/180y.png" alt="">
-    <img id="logo2" src="assets/cg.png" alt="">
     <!-- Фоновое изображение -->
     <div class="background" aria-hidden="true">
         <img src="assets/background.jpg" alt="" class="background-image">
@@ -927,7 +994,16 @@
 
     <!-- Основной контент -->
     <div class="main-container">
+        <img id="logo1" src="assets/180y.png" alt="">
+        <img id="logo2" src="assets/cg.png" alt="">
         <!-- Блок с фотографией -->
+
+        <!-- Заголовок для обильных устройств-->
+        <header class="header-section" id="mobile-header">
+            <h1 class="scientist-name" style="justify-self: center;">Щербаков Дмитрий Иванович</h1>
+            <div class="scientist-years">1893-1966</div>
+        </header>
+
         <section class="photo-section">
             <div class="photo-container">
                 <img src="assets/щербаков.png" alt="Портрет Дмитрия Ивановича Щербакова" class="scientist-photo">
@@ -937,7 +1013,7 @@
         <!-- Контентная часть -->
         <section class="content-section">
             <!-- Заголовок -->
-            <header class="header-section">
+            <header class="header-section" id="desctop-header">
                 <h1 class="scientist-name">Щербаков Дмитрий Иванович</h1>
                 <div class="scientist-years">1893-1966</div>
             </header>
@@ -1217,6 +1293,7 @@
                     </div>
                 </section>
             </main>
+
         </section>
     </div>
 

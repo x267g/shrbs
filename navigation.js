@@ -134,16 +134,4 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Анимация наград при наведении
-    const awardCards = document.querySelectorAll('.award-card');
-
-    awardCards.forEach(card => {
-        card.addEventListener('mouseenter', function () {
-            this.style.transform = 'translateY(-5px) scale(1.02)';
-        });
-
-        card.addEventListener('mouseleave', function () {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
 });

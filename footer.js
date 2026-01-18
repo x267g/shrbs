@@ -18,20 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 100 + index * 100);
     });
 
-    // Анимация при наведении на награды
-    awardCards.forEach(card => {
-        card.addEventListener('mouseenter', function () {
-            this.style.transform = 'translateY(-8px) scale(1.05)';
-            this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.2)';
-            this.style.zIndex = '10';
-        });
 
-        card.addEventListener('mouseleave', function () {
-            this.style.transform = 'translateY(0) scale(1)';
-            this.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
-            this.style.zIndex = '1';
-        });
-    });
 
     // Автоматическая прокрутка наград в футере (исправленная версия)
     const awardsFooter = document.querySelector('.awards-footer');
