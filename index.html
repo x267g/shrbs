@@ -240,6 +240,8 @@
         }
 
         .video-container {
+            display: flex;
+            flex-direction: column;
             width: 95%;
             height: 600px;
             background-color: rgba(0, 0, 0, 0.1);
@@ -247,6 +249,24 @@
             padding: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             margin-bottom: 100px;
+        }
+
+        .video-container iframe {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .video-container>.h {
+            background: #222;
+            width: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            color: var(--color-light);
+            text-align: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.7rem;
+            height: 40px;
+
         }
 
         .video-frame {
@@ -262,11 +282,11 @@
             font-size: 1.2rem;
             line-height: 1.8;
             color: var(--color-primary);
-            max-width: 900px;
-            margin: 0 auto;
+            max-width: 1000px;
         }
 
         .memory-tab {
+            width: 100%;
             padding: 50px;
         }
 
@@ -448,10 +468,6 @@
 
             .biography-tab {
                 grid-template-columns: 1fr;
-            }
-
-            .video-container {
-                height: 300px;
             }
 
             .navigation {
@@ -796,7 +812,8 @@
             border: 1px solid var(--color-secondary);
         }
 
-        .video-9-16 {
+        .video-9-16,
+        .video-16-9 {
             width: 100%;
             max-width: 300px;
             margin: 0 auto;
@@ -806,6 +823,12 @@
             overflow: hidden;
             border: 3px solid var(--color-accent);
         }
+
+        .video-16-9 {
+            max-width: 500px;
+            aspect-ratio: 16/9;
+        }
+
 
         .video-placeholder {
             width: 100%;
@@ -874,21 +897,21 @@
         #logo1 {
             position: absolute;
             z-index: 99999;
-            top: 20px;
-            right: 20px;
-            height: 90px;
+            top: 3vh;
+            right: 3vh;
+            height: 7vh;
 
-            border-radius: 20px;
+            border-radius: 2vh;
         }
 
         #logo2 {
             position: absolute;
             z-index: 99999;
-            top: 20px;
-            right: 150px;
-            height: 90px;
+            top: 3vh;
+            right: 13vh;
+            height: 7vh;
 
-            border-radius: 20px;
+            border-radius: 2vh;
         }
     </style>
 </head>
@@ -1002,6 +1025,7 @@
                 <!-- Материалы -->
                 <section id="materials" class="tab-content" role="tabpanel" aria-labelledby="tab-materials" hidden>
                     <div class="video-container">
+                        <div class="h">Урок-игра по ученому-геологу-химику Д.И. Щербакову</div>
                         <iframe src="https://drive.google.com/file/d/1ARNRSh1CFcnKhTRl_1vXIr_PnbrMwlGg/preview"
                             class="video-frame"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -1009,6 +1033,7 @@
                         </iframe>
                     </div>
                     <div class="video-container">
+                        <div class="h">Биография Д.И. Щербакова</div>
                         <iframe src="https://drive.google.com/file/d/1_DoID0v9qm7Aa9XR13-MCkAaysTtkNPH/preview"
                             class="video-frame"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -1016,6 +1041,7 @@
                         </iframe>
                     </div>
                     <div class="video-container">
+                        <div class="h">Презентация - Щербаковит</div>
                         <iframe src="https://drive.google.com/file/d/1bax8N69OykwmcfrksN1cDH0rJpeYiEvb/preview"
                             class="video-frame"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -1128,8 +1154,8 @@
                         <!-- Третий блок -->
                         <div class="interview-block">
                             <div class="person-info">
-                                <h3 class="person-name">Геолог-минералог Радкевич Г.А.</h3>
-                                <p class="person-position">Специалист в области минералогии</p>
+                                <h3 class="person-name">Потоцкая М.А.</h3>
+                                <p class="person-position"> Учитель химии</p>
                             </div>
 
                             <div class="videos-container">
@@ -1137,7 +1163,9 @@
                                     <div class="video-label">Вопрос</div>
                                     <div class="video-9-16">
                                         <div class="video-placeholder">
-                                            <iframe src="" style="height: 100%;" frameborder="0"></iframe>
+                                            <iframe
+                                                src="https://drive.google.com/file/d/1IRkLKSiU3PFr55vWqS5_-KYVDQNc7L04/preview"
+                                                style="height: 100%;" frameborder="0"></iframe>
                                         </div>
                                     </div>
                                 </div>
@@ -1145,7 +1173,43 @@
                                 <div class="video-wrapper">
                                     <div class="video-label">Ответ</div>
                                     <div class="video-9-16">
-                                        <iframe src="" style="height: 100%;" frameborder="0"></iframe>
+                                        <div class="video-placeholder">
+                                            <iframe
+                                                src="https://drive.google.com/file/d/1XOA7RiRx8HnKeJ8SshcQHyjceoK5_Wcf/preview"
+                                                style="height: 100%;" frameborder="0"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Четвёртый блок -->
+                        <div class="interview-block">
+                            <div class="person-info">
+                                <h3 class="person-name">Геолог-минералог Радкевич Г.А.</h3>
+                                <p class="person-position">Специалист в области минералогии</p>
+                            </div>
+
+                            <div class="videos-container">
+                                <div class="video-wrapper">
+                                    <div class="video-label">Вопрос</div>
+                                    <div class="video-16-9">
+                                        <div class="video-placeholder">
+                                            <iframe
+                                                src="https://drive.google.com/file/d/1ockjDtYk0n8e7MpsCEF05MIAp-DH7jzs/preview"
+                                                style="height: 100%;" frameborder="0"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="video-wrapper">
+                                    <div class="video-label">Ответ</div>
+                                    <div class="video-16-9">
+                                        <div class="video-placeholder">
+                                            <iframe
+                                                src="https://drive.google.com/file/d/1ZZ_LssLXFdXPvMaIVHUf2CtgNt1QeoI7/preview"
+                                                style="height: 100%;" frameborder="0"></iframe>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
