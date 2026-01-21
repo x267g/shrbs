@@ -44,8 +44,8 @@ class TestSystem {
                 text: "Какой университет окончил Д.И. Щербаков?",
                 options: [
                     { id: 'a', text: "Московский университет", correct: false },
-                    { id: 'b', text: "Петербургский университет", correct: true },
-                    { id: 'c', text: "Киевский университет", correct: false },
+                    { id: 'b', text: "Петербургский университет", correct: false },
+                    { id: 'c', text: "Таврический университет", correct: true },
                     { id: 'd', text: "Казанский университет", correct: false }
                 ],
                 explanation: "Д.И. Щербаков окончил Петербургский университет в 1915 году."
